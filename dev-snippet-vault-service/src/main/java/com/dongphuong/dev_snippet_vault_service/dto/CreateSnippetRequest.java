@@ -1,7 +1,7 @@
 package com.dongphuong.dev_snippet_vault_service.dto;
 
-import java.time.LocalDateTime;
 import java.util.Set;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -9,15 +9,18 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SnippetDTO {
-    private Long id;
+public class CreateSnippetRequest {
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String content;
+
     private String language;
+
     private Set<String> tags;
-    private boolean isFavorite;
-    private boolean isPublic;
-    private String ownerUsername;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
+    private Boolean isPublic;
+
+    private Boolean isFavorite;
 }

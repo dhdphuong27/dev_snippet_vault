@@ -47,8 +47,10 @@ public class SnippetServiceImpl implements SnippetService {
                 .title(request.getTitle())
                 .content(request.getContent())
                 .language(request.getLanguage())
-                .isPublic(Boolean.TRUE.equals(request.getIsPublic()))
+                .isPublic(request.getIsPublic())
+                .isFavorite(request.getIsFavorite())
                 .user(user)
+                .tags(processTags(request.getTags())) // ✅ Add this
                 .build();
 
         // handle tags
@@ -171,8 +173,28 @@ public class SnippetServiceImpl implements SnippetService {
                 .language(snippet.getLanguage())
                 .isPublic(snippet.isPublic())
                 .isFavorite(snippet.isFavorite())
+                .tags(snippet.getTags() != null ?
+                        snippet.getTags().stream()
+                                .map(Tag::getName)
+                                .collect(Collectors.toSet()) : new HashSet<>()) // ✅ Add this
                 .createdAt(snippet.getCreatedAt())
                 .updatedAt(snippet.getUpdatedAt())
                 .build();
+    }
+    private Set<Tag> processTags(Set<String> tagNames) {
+        if (tagNames == null || tagNames.isEmpty()) {
+            return new HashSet<>();
+        }
+
+        return tagNames.stream()
+                .map(name -> name.trim().toLowerCase())
+                .filter(name -> !name.isEmpty())
+                .map(name -> tagRepository.findByName(name)
+                        .orElseGet(() -> {
+                            Tag newTag = new Tag();
+                            newTag.setName(name);
+                            return tagRepository.save(newTag);
+                        }))
+                .collect(Collectors.toSet());
     }
 }
