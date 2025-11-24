@@ -48,6 +48,7 @@ Live Application: [Add your deployment link here]
 ### Snippet Image
 ![Snippet](./screenshots/snippet.png)
 *Snippet image created by this app*
+
 ---
 
 ## Features
