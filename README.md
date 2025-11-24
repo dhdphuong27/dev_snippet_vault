@@ -34,6 +34,7 @@ Live Application: [Add your deployment link here]
 
 ### Share Page
 ![Share Page](./screenshots/share-page.png)
+![Share Page](./screenshots/share-page-2.png)
 *Share snippets with copy code, copy image, and social media buttons*
 
 ### Public Gallery
@@ -44,6 +45,9 @@ Live Application: [Add your deployment link here]
 ![Search](./screenshots/search-filter.png)
 *Powerful search and language filtering capabilities*
 
+### Snippet Image
+![Snippet](./screenshots/snippet.png)
+*Snippet image created by this app*
 ---
 
 ## Features
