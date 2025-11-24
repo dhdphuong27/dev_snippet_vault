@@ -2,11 +2,6 @@
 
 A modern, full-stack code snippet management application built with React and Spring Boot. Store, organize, and share your code snippets with a beautiful dark-themed interface inspired by VS Code.
 
-![DevSnippet Vault Demo](./screenshots/hero.png)
-
-## Live Demo
-
-Live Application: [Add your deployment link here]
 
 ## Table of Contents
 
