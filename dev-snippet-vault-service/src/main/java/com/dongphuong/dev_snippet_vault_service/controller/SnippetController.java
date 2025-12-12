@@ -36,6 +36,11 @@ public class SnippetController {
         return ResponseEntity.ok(snippetService.searchPublicSnippets(keyword));
     }
 
+    @GetMapping("/public/{id}")
+    public ResponseEntity<SnippetDTO> getPublicSnippet(@PathVariable Long id) {
+        return ResponseEntity.ok(snippetService.getPublicSnippetById(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<SnippetDTO> update(@PathVariable Long id,
                                              @Valid @RequestBody CreateSnippetRequest request,

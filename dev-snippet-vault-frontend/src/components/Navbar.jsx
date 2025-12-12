@@ -33,7 +33,14 @@ function Navbar() {
             {isAuthenticated() && (
               <div className="flex space-x-4">
                 <Link
-                  to="/"
+                  to="/public"
+                  className="flex items-center space-x-2 px-3 py-2 rounded-md text-[#cccccc] hover:text-white hover:bg-[#2d2d30] transition"
+                >
+                  <Globe size={20} />
+                  <span className="hidden sm:block">Public</span>
+                </Link>
+                <Link
+                  to="/my-snippets"
                   className="flex items-center space-x-2 px-3 py-2 rounded-md text-[#cccccc] hover:text-white hover:bg-[#2d2d30] transition"
                 >
                   <Home size={20} />
@@ -48,13 +55,7 @@ function Navbar() {
                   <span className="hidden sm:block">Favorites</span>
                 </Link>
 
-                <Link
-                  to="/public"
-                  className="flex items-center space-x-2 px-3 py-2 rounded-md text-[#cccccc] hover:text-white hover:bg-[#2d2d30] transition"
-                >
-                  <Globe size={20} />
-                  <span className="hidden sm:block">Public</span>
-                </Link>
+                
               </div>
             )}
           </div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Heart, Edit, Trash2, Copy, Globe, Lock } from 'lucide-react';
+import { Heart, Edit, Trash2, Copy, Globe, Lock, Share2} from 'lucide-react';
 import { snippetAPI } from '../services/api';
 import toast from 'react-hot-toast';
 
@@ -25,6 +25,11 @@ function SnippetCard({ snippet, onDelete, onFavoriteToggle, showActions = true }
     } catch (error) {
       toast.error('Failed to copy');
     }
+  };
+  const handleShare = () => {
+    const shareUrl = `${window.location.origin}/share/${snippet.id}`;
+    navigator.clipboard.writeText(shareUrl);
+    toast.success('Share link copied to clipboard!');
   };
 
   // Toggle favorite
@@ -52,6 +57,11 @@ function SnippetCard({ snippet, onDelete, onFavoriteToggle, showActions = true }
       }
     }
   };
+  const handleTitleClick = () => {
+    if (snippet.public) {
+      navigate(`/share/${snippet.id}`);
+    }
+  };
 
   // Edit snippet
   const handleEdit = () => {
@@ -64,12 +74,18 @@ function SnippetCard({ snippet, onDelete, onFavoriteToggle, showActions = true }
       <div className="p-4 border-b border-[#3e3e42]">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-white mb-2">
+            <h3 
+              onClick={handleTitleClick}
+              className={`text-lg font-semibold text-white mb-2 ${
+                snippet.public ? 'cursor-pointer hover:text-blue-400 transition' : ''
+              }`}
+              title={snippet.public ? 'Click to view share page' : ''}
+            >
               {snippet.title}
             </h3>
             <div className="flex items-center space-x-3">
               {/* Language Badge */}
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-900 text-blue-200">
+              <span className="inline-flex capitalize items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-900 text-blue-200">
                 {snippet.language}
               </span>
               
@@ -136,6 +152,7 @@ function SnippetCard({ snippet, onDelete, onFavoriteToggle, showActions = true }
               >
                 <Trash2 size={20} />
               </button>
+              
             </div>
           )}
         </div>

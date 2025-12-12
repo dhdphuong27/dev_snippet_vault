@@ -45,6 +45,7 @@ function CreateSnippet() {
     'json',
     'yaml',
     'markdown',
+    'others'
   ];
 
   // Fetch snippet data if editing
@@ -117,7 +118,7 @@ function CreateSnippet() {
         toast.success('Snippet created successfully!');
       }
       
-      navigate('/'); // Redirect to home
+      navigate('/my-snippets'); // Redirect to home
     } catch (error) {
       toast.error(
         error.response?.data?.message || 
@@ -130,7 +131,7 @@ function CreateSnippet() {
 
   // Handle cancel
   const handleCancel = () => {
-    navigate('/');
+    navigate('/my-snippets');
   };
 
   if (fetchingSnippet) {

@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import PublicSnippets from './pages/PublicSnippets';
 import CreateSnippet from './pages/CreateSnippet';
+import ShareSnippet from './pages/ShareSnippet';
 import Favorites from './pages/Favorites';
 
 // Protected Route component
@@ -38,11 +39,12 @@ function App() {
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/public" element={<PublicSnippets />} />
+        <Route path="/" element={<PublicSnippets />} />
+        <Route path="/share/:id" element={<ShareSnippet />} />
         
         {/* Protected routes */}
         <Route 
-          path="/" 
+          path="/my-snippets" 
           element={
             <ProtectedRoute>
               <Home />

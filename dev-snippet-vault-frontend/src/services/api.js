@@ -41,6 +41,7 @@ export const snippetAPI = {
   getFavorites: () => api.get('/snippets/favorites'),
   search: (keyword) => api.get(`/snippets/search?keyword=${keyword}`),
   searchPublic: (keyword) => api.get(`/snippets/public/search?keyword=${keyword}`),
+  getPublicSnippetById: (id) => api.get(`/snippets/public/${id}`),
 };
 
 export default api;

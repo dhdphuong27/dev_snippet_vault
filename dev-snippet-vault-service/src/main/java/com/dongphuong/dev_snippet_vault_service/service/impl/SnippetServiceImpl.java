@@ -197,4 +197,15 @@ public class SnippetServiceImpl implements SnippetService {
                         }))
                 .collect(Collectors.toSet());
     }
+    @Override
+    public SnippetDTO getPublicSnippetById(Long id) {
+        Snippet snippet = snippetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Snippet not found"));
+
+        if (!snippet.isPublic()) {
+            throw new RuntimeException("This snippet is not public");
+        }
+
+        return convertToDTO(snippet);
+    }
 }

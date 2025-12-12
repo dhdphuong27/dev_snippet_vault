@@ -15,4 +15,5 @@ public interface SnippetService {
     SnippetDTO toggleFavorite(Long id, String username);
     List<SnippetDTO> searchPublicSnippets(String keyword);
     List<SnippetDTO> searchMySnippets(String keyword, String username);
+    SnippetDTO getPublicSnippetById(Long id);
 }
